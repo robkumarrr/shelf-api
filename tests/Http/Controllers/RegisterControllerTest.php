@@ -11,5 +11,5 @@ it('registers a new user', function () {
         'password' => 'password'
     ]);
 
-    expect(true)->toBe(true);
+    expect(true)->toBeTrue();
 });
