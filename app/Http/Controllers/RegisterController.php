@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRegistrationRequest;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -18,7 +15,7 @@ class RegisterController extends Controller
         $token = $user->createToken('login-token')->plainTextToken;
 
         return response()->json([
-            'message', 'User registered successfully.',
+            'message' => 'User registered successfully.',
             'user' => $user,
             'token' => $token
         ], 201);

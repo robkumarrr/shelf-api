@@ -11,7 +11,7 @@ class CreateRegistrationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class CreateRegistrationRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|unique|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string'
         ];
     }
