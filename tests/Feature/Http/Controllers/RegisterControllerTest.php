@@ -27,7 +27,26 @@ it('does not register a duplicate user', function() {
         'password' => 'password'
     ];
 
-    $user = User::factory()->create($data);
+    User::factory()->create($data);
+
+    $this->postJson(route('register.store'), $data)
+        ->assertStatus(422);
+});
+
+it('does not register a user with incorrect data', function() {
+   $data = [
+       'name' => 'test',
+       'email' => 'bad_email',
+       'password' => 'password'
+   ];
+
+   $this->postJson(route('register.store'), $data)
+       ->assertStatus(422)
+       ->assertJsonValidationErrors(['email']);;
+});
+
+it('does not register a user if data is missing', function() {
+    $data = [];
 
     $this->postJson(route('register.store'), $data)
         ->assertStatus(422);
