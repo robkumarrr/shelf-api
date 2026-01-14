@@ -3,6 +3,7 @@
 namespace Tests\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use function Pest\Laravel\assertDatabaseHas;
 
 it('registers a new user', function () {
