@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Models;
+
+use App\ShelfItemStatus;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+
+class ShelfItem extends Model
+{
+    protected $fillable = [
+        'rating',
+        'acquired_on',
+        'last_used_on',
+        'status',
+        'purchase_price',
+        'purchase_location',
+        'description',
+        'released_on'
+    ];
+
+    protected $casts = [
+        'status' => ShelfItemStatus::class,
+        'acquired_on' => 'date',
+        'last_used_on' => 'date',
+        'released_on' => 'date',
+        'purchase_price' => 'decimal:2',
+    ];
+
+    public function itemable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+}
