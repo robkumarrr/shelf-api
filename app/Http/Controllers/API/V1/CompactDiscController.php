@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CompactDiscCreateRequest;
-use App\Http\Requests\CompactDiscUpdateRequest;
+use App\Http\Requests\API\V1\CompactDiscCreateRequest;
+use App\Http\Requests\API\V1\CompactDiscUpdateRequest;
 use App\Models\CompactDisc;
-use Illuminate\Http\Request;
 
 class CompactDiscController extends Controller
 {
