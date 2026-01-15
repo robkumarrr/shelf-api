@@ -47,8 +47,6 @@ it('does not register a user with incorrect data', function() {
 });
 
 it('does not register a user if data is missing', function() {
-    $data = [];
-
-    $this->postJson(route('register.store'), $data)
+    $this->postJson(route('register.store'), [])
         ->assertStatus(422);
 });
