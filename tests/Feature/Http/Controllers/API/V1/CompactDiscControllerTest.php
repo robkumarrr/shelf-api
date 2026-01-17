@@ -6,7 +6,10 @@ it('returns all of the compact discs', function() {
 
     CompactDisc::factory()->count(10)->create();
 
-    $response = $this->get(route('compact-disc.index'));
+    $response = $this->getJson(route('compact-disc.index'));
 
-    $response->assertStatus(200);
+    $response->assertStatus(200)
+        ->assertJsonStructure([
+            'data'
+        ]);
 });
