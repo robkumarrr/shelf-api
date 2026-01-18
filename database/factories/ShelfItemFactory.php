@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\ShelfItemStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,6 +19,7 @@ class ShelfItemFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::factory(),
             'rating' => $this->faker->numberBetween(1,10),
             'acquired_on' => $this->faker->date(),
             'last_used_on' => $this->faker->date(),

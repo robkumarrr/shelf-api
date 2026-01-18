@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class CompactDisc extends Model
 {
@@ -18,8 +18,12 @@ class CompactDisc extends Model
         'released_on'
     ];
 
-    public function shelfItem() : MorphOne
+    protected $casts = [
+        'released_on' => 'date'
+    ];
+
+    public function shelfItem() : MorphMany
     {
-        return $this->morphOne(ShelfItem::class, 'itemable');
+        return $this->morphMany(ShelfItem::class, 'itemable');
     }
 }
