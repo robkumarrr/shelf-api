@@ -12,7 +12,7 @@ class CompactDiscController extends Controller
 {
     public function index()
     {
-        return CompactDiscResource::collection(CompactDisc::all());
+        return CompactDiscResource::collection(CompactDisc::query()->paginate());
     }
 
     public function store(CompactDiscCreateRequest $request)
