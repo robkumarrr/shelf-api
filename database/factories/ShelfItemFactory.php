@@ -24,8 +24,7 @@ class ShelfItemFactory extends Factory
             'status' => $this->faker->randomElement(ShelfItemStatus::cases())->value,
             'purchase_price' => $this->faker->randomFloat(2, 1, 100),
             'purchase_location' => $this->faker->city(),
-            'description' => $this->faker->text(),
-            'released_on' => $this->faker->date()
+            'description' => $this->faker->text()
         ];
     }
 }

@@ -18,8 +18,7 @@ class ShelfItem extends Model
         'status',
         'purchase_price',
         'purchase_location',
-        'description',
-        'released_on'
+        'description'
     ];
 
     protected $casts = [
