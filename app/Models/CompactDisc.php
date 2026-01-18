@@ -15,6 +15,7 @@ class CompactDisc extends Model
         'artist',
         'album_name',
         'number_of_songs',
+        'released_on'
     ];
 
     public function shelfItem() : MorphOne
