@@ -7,4 +7,6 @@ use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/compact-disc/index', [CompactDiscController::class, 'index'])->name('compact-disc.index');
+Route::middleware(["auth:sanctum"])->group(function() {
+    Route::apiResource('compact-disc',CompactDiscController::class);
+});
