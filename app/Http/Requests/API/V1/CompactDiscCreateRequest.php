@@ -11,7 +11,7 @@ class CompactDiscCreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class CompactDiscCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'artist' => 'required|string|unique:compact_discs',
+            'album_name' => 'required|string',
+            'number_of_songs' => 'required|integer|gt:0',
+            'released_on' => 'nullable|date',
+            'rating' => 'nullable|integer|between:1,10',
+            'acquired_on'=> 'nullable|date',
+            'last_used_on'=> 'nullable|date',
+            'status'=> 'nullable|string',
+            'purchase_price'=> 'nullable|decimal',
+            'purchase_location'=> 'nullable|string',
+            'description' => 'nullable|string'
         ];
     }
 }
