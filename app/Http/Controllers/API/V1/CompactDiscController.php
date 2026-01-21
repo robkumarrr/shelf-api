@@ -17,6 +17,34 @@ class CompactDiscController extends Controller
 
     public function store(CompactDiscCreateRequest $request)
     {
+        $compactDiscData = $request->safe()->only([
+            'artist',
+            'album_name',
+            'number_of_songs',
+            'released_on'
+        ]);
+
+        $shelfItemData = $request->safe()->only([
+            'rating',
+            'acquired_on',
+            'last_used_on',
+            'status',
+            'purchase_price',
+            'purchase_location',
+            'description'
+        ]);
+
+        $compactDisc = CompactDisc::firstOrCreate($compactDiscData);
+
+        $shelfItemData['itemable_type'] = CompactDisc::class;
+        $shelfItemData['itemable_id'] = $compactDisc->id;
+
+        $request->user()->shelfItems()->create($shelfItemData);
+
+        return response()->json([
+            'status' => 201,
+            'message' => 'success'
+        ]);
     }
 
     public function show(CompactDisc $compactDisc)
