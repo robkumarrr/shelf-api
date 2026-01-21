@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CompactDisc;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,11 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $users = User::factory(50)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        CompactDisc::factory()
+            ->recycle($users)
+            ->count(300)
+            ->create();
     }
 }
