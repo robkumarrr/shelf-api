@@ -20,7 +20,7 @@ class CompactDiscFactory extends Factory
     {
         return [
             'artist' => $this->faker->name(),
-            'album_name' => fake()->words(3),
+            'album_name' => fake()->words(3, true),
             'number_of_songs' => $this->faker->numberBetween(8, 30),
             'released_on' => $this->faker->date()
         ];
