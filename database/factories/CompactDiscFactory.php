@@ -25,13 +25,4 @@ class CompactDiscFactory extends Factory
             'released_on' => $this->faker->date()
         ];
     }
-
-    public function configure(): Factory|CompactDiscFactory
-    {
-        return $this->afterCreating(function(CompactDisc $compactDisc) {
-            $compactDisc->shelfItem()->save(
-                ShelfItem::factory()->make()
-            );
-        });
-    }
 }
