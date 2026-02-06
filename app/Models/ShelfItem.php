@@ -13,6 +13,7 @@ class ShelfItem extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'itemable_type',
         'itemable_id',
         'rating',
