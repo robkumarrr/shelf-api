@@ -2,8 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\CompactDisc;
+use App\Models\ShelfItem;
 use App\Models\User;
 use App\ShelfItemStatus;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,5 +31,14 @@ class ShelfItemFactory extends Factory
             'purchase_location' => $this->faker->city(),
             'description' => $this->faker->text()
         ];
+    }
+
+    public function forCompactDiscs(Collection $compactDiscs)
+    {
+        return $this->afterMaking(function (ShelfItem $shelfItem) use ($compactDiscs) {
+            $cd = $compactDiscs->random();
+            $shelfItem->itemable_type = CompactDisc::class;
+            $shelfItem->itemable_id = $cd->id;
+        });
     }
 }
