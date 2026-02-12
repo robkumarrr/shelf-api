@@ -71,7 +71,7 @@ it('does not create a compact disc if data is missing', function() {
     $this->markTestSkipped();
 });
 
-function createAuthorizedUser()
+function createAuthorizedUser() //TODO: sanctum acting as
 {
     $user = User::factory()->create();
 
