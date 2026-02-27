@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRegistrationRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -13,12 +14,11 @@ class RegisterController extends Controller
 
         $user = User::query()->create($newCredentials);
 
-        $token = $user->createToken('login-token')->plainTextToken;
+        Auth::login($user);
 
         return response()->json([
             'message' => 'User registered successfully.',
-            'user' => $user,
-            'token' => $token
+            'user' => $user
         ], 201);
     }
 }
