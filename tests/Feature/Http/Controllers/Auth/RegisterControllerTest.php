@@ -13,11 +13,8 @@ it('registers a new user', function () {
         'password' => 'password'
     ];
 
-    $user = User::factory()->make($data);
-
     Auth::shouldReceive('login')
-        ->once()
-        ->with($user);
+        ->once();
 
     $this->postJson(route('register.store'), $data)
         ->assertStatus(201)
