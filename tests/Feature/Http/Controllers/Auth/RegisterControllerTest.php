@@ -3,20 +3,25 @@
 namespace Tests\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use function Pest\Laravel\assertDatabaseHas;
 
 it('registers a new user', function () {
-
     $data = [
-        'name' => 'test',
+        'name' => 'user1',
         'email' => 'test@example.com',
         'password' => 'password'
     ];
 
+    $user = User::factory()->make($data);
+
+    Auth::shouldReceive('login')
+        ->once()
+        ->with($user);
+
     $this->postJson(route('register.store'), $data)
         ->assertStatus(201)
-        ->assertJsonStructure(['message', 'user', 'token']);
+        ->assertJsonStructure(['message', 'data' => ['id', 'attributes']]);
 
     assertDatabaseHas('users', ['email' => 'test@example.com']);
 });
